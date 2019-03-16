@@ -38,10 +38,10 @@ class CommentsFragment : Fragment {
         val commentsList = ArrayList<Comments>()
         super.onViewCreated(view, savedInstanceState)
         val client = OkHttpClient()
-        if(news == null){
+        if (news == null) {
             news = requireActivity().intent.getSerializableExtra("news") as News
         }
-        Log.e("TAG","news is" + news.toString())
+        Log.e("TAG", "news is" + news.toString())
         for (kid in news?.kids!!) {
             val requestForComments =
                 Request.Builder().url("https://hacker-news.firebaseio.com/v0/item/$kid.json")
@@ -70,5 +70,6 @@ class CommentsFragment : Fragment {
             LinearLayoutManager.VERTICAL
         )
         rvComments.addItemDecoration(dividerItemDecoration)
+        commentsAdapter.notifyDataSetChanged()
     }
 }

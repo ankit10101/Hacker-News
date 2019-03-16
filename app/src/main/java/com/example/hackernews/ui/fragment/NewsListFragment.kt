@@ -46,9 +46,9 @@ class NewsListFragment : Fragment() {
                 val listType = object : TypeToken<List<Long>>() {}.type
                 val topStories = gson.fromJson<ArrayList<Long>>(result, listType)
                 result?.let {
-                    for (i: Int in 1..20) {
+                    for (topStory in topStories) {
                         val requestForNews =
-                            Request.Builder().url("https://hacker-news.firebaseio.com/v0/item/${topStories[i]}.json")
+                            Request.Builder().url("https://hacker-news.firebaseio.com/v0/item/$topStory.json")
                                 .build()
                         val newCall = client.newCall(requestForNews)
                         newCall.enqueue(object : Callback {
