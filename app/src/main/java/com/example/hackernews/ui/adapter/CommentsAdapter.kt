@@ -1,5 +1,6 @@
 package com.example.hackernews.ui.adapter
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -18,11 +19,12 @@ class CommentsAdapter(val commentsList: ArrayList<Comments>): RecyclerView.Adapt
 
     override fun getItemCount(): Int  = commentsList.size
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(commentHolder: CommentAdapter, position: Int) {
         val currentComment = commentsList.get(position)
         with(commentHolder.itemView){
             tvCommentTitle.text = currentComment.text
-            tvCommentUser.text = currentComment.by
+            tvCommentUser.text = "Submitted by:- ${currentComment.by}"
             tvCommentTime.text = currentComment.time.toString()
         }
     }

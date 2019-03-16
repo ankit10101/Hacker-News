@@ -1,5 +1,6 @@
 package com.example.hackernews.ui.adapter
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -19,12 +20,13 @@ class NewsAdapter(private val newsList: ArrayList<News>, private val handler: Cl
 
     override fun getItemCount(): Int = newsList.size
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(newsHolder: NewsHolder, positon: Int) {
         val currentNews = newsList[positon]
         with(newsHolder.itemView) {
             tvTitle.text = currentNews.title
             tvTime.text = currentNews.time.toString()
-            tvUser.text = currentNews.by
+            tvUser.text = "Submitted by:- ${currentNews.by}"
             tvUrl.text = currentNews.url
         }
         newsHolder.itemView.setOnClickListener {
